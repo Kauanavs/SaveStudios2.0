@@ -382,12 +382,84 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ===========================================
-       11. PORTFOLIO — Touch overlay (mobile)
+       11. PORTFOLIO — Hover Play & Lightbox Modal
        =========================================== */
 
-    if ('ontouchstart' in window) {
-        const portfolioItems = document.querySelectorAll('.portfolio-item');
+    const portfolioItems = document.querySelectorAll('.portfolio-item');
+    const lightbox = document.getElementById('videoLightbox');
+    const lightboxVideo = document.getElementById('lightboxVideo');
+    const lightboxClose = document.getElementById('lightboxClose');
 
+    portfolioItems.forEach(item => {
+        const video = item.querySelector('.portfolio-video');
+
+        // Hover Play/Pause (Desktop)
+        item.addEventListener('mouseenter', () => {
+            if (video) {
+                const playPromise = video.play();
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        // Auto-play foi evitado pelo navegador
+                    });
+                }
+            }
+        });
+
+        item.addEventListener('mouseleave', () => {
+            if (video) {
+                video.pause();
+                video.currentTime = 1; // Reinicia o vídeo para o segundo 1 (evitando a tela preta de início)
+            }
+        });
+
+        // Clique para abrir Lightbox
+        item.addEventListener('click', (e) => {
+            if (e.target.closest('.lightbox-modal')) return;
+
+            const videoSrc = item.getAttribute('data-video');
+            if (videoSrc && lightbox && lightboxVideo) {
+                lightboxVideo.src = videoSrc;
+                lightboxVideo.load();
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Impede scroll ao fundo
+            }
+        });
+    });
+
+    // Fechar Lightbox
+    function closeLightbox() {
+        if (lightbox && lightboxVideo) {
+            lightbox.classList.remove('active');
+            lightboxVideo.pause();
+            lightboxVideo.src = ''; // Limpa a origem para economizar banda e parar o vídeo
+            document.body.style.overflow = '';
+        }
+    }
+
+    if (lightboxClose) {
+        lightboxClose.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeLightbox();
+        });
+    }
+
+    if (lightbox) {
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        // Fechar com tecla ESC
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
+        });
+    }
+
+    // Suporte a dispositivos móveis (Touch)
+    if ('ontouchstart' in window) {
         portfolioItems.forEach(item => {
             item.addEventListener('touchstart', () => {
                 portfolioItems.forEach(i => i.classList.remove('touch-active'));
@@ -455,3 +527,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 });
+
+// WHATSAPP BUTTON
+const whatsappBtn = document.getElementById('whatsappBtn');
+
+if (whatsappBtn) {
+  window.addEventListener('scroll', () => {
+    whatsappBtn.classList.toggle('show', window.scrollY > 200);
+  });
+}

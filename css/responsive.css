@@ -43,7 +43,8 @@
         grid-auto-rows: 250px;
     }
 
-    .portfolio-large {
+    .portfolio-large,
+    #portfolioItem6 {
         grid-column: span 2;
     }
 

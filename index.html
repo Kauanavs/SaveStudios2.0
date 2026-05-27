@@ -13,7 +13,7 @@
     <meta property="og:description" content="Criamos conteúdos que conectam, emocionam e posicionam marcas no digital.">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <link rel="shortcut icon" href="assets/icons/Sem título.png" type="image/x-icon">
+    <link rel="shortcut icon" href="assets/icons/favicon.png" type="image/png">
     <title>Save Studios — Sua História Merece Ser Vista</title>
 
     <!-- Fontes -->
@@ -66,10 +66,7 @@
             <div class="hero-grid-overlay"></div>
         </div>
         <div class="hero-content">
-            <div class="hero-badge fade-up">
-                <span class="badge-dot"></span>
-                Estúdio Criativo Premium
-            </div>
+            <!-- hero badge removed -->
             <h1 class="hero-title fade-up">
                 Sua história merece<br>
                 ser <span class="text-gradient">vista.</span>
@@ -181,10 +178,14 @@
                     </div>
                 </div>
                 <div class="about-visual fade-up">
-                    <div class="about-image-wrapper">
+                    <div class="about-images-collage">
                         <div class="about-image-glow"></div>
-                        <img src="assets/images/Designer (1).png" alt="Save Studios — Logo oficial"
-                            class="about-image" loading="lazy">
+                        <div class="collage-img main-img">
+                            <img src="assets/images/2.jpg" alt="Save Studios Produção" loading="lazy">
+                        </div>
+                        <div class="collage-img overlay-img">
+                            <img src="assets/images/3.jpg" alt="Save Studios Gravação e Direção" loading="lazy">
+                        </div>
                         <div class="about-image-badge glass-card">
                             <span class="badge-number">1+</span>
                             <span class="badge-text">Anos criando<br>experiências</span>
@@ -326,15 +327,15 @@
                 transformaram marcas e geraram resultados reais.
             </p>
             <div class="portfolio-grid">
-                <div class="portfolio-item portfolio-large fade-up" id="portfolioItem1">
+                <!-- Projeto 1: NextGen Branding (Empresa 1) -->
+                <div class="portfolio-item portfolio-large fade-up" id="portfolioItem1" data-video="assets/videos/empresa1.mp4">
                     <div class="portfolio-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=800&h=600&fit=crop&q=80"
-                            alt="Campanha audiovisual para marca de luxo" loading="lazy">
+                        <video class="portfolio-video" src="assets/videos/empresa1.mp4#t=1" loop muted playsinline preload="metadata" poster="assets/images/2.jpg"></video>
                         <div class="portfolio-overlay">
                             <div class="portfolio-info">
-                                <span class="portfolio-tag">Audiovisual</span>
-                                <h3>Luxe Brand Campaign</h3>
-                                <p>Campanha audiovisual completa para marca de luxo</p>
+                                <span class="portfolio-tag">Showcase &amp; Motion</span>
+                                <h3>NextGen Branding</h3>
+                                <p>Campanha institucional de alto impacto visual</p>
                             </div>
                         </div>
                         <div class="portfolio-play-btn">
@@ -344,32 +345,92 @@
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item fade-up" id="portfolioItem2">
+
+                <!-- Projeto 2: Urban Lifestyle (Empresa 2) -->
+                <div class="portfolio-item fade-up" id="portfolioItem2" data-video="assets/videos/empresa2.mp4">
                     <div class="portfolio-image-wrapper">
-                        <video id="portVideo2" src="assets/videos/bg.mp4" autoplay muted playsinline aria-label="Identidade visual startup de tecnologia"></video>
+                        <video class="portfolio-video" src="assets/videos/empresa2.mp4#t=1" loop muted playsinline preload="metadata"></video>
                         <div class="portfolio-overlay">
                             <div class="portfolio-info">
-                                <span class="portfolio-tag">Identidade Visual</span>
-                                <h3>NeoTech Rebrand</h3>
-                                <p>Rebranding completo para startup de tecnologia</p>
+                                <span class="portfolio-tag">Audiovisual / Ads</span>
+                                <h3>Urban Lifestyle</h3>
+                                <p>Comercial conceitual dinâmico para redes</p>
                             </div>
                         </div>
-                        <div class="portfolio-play-btn" onclick="const v = document.getElementById('portVideo2'); if(v.paused) v.play(); else v.pause();">
+                        <div class="portfolio-play-btn">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M8 5v14l11-7z" />
                             </svg>
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item fade-up" id="portfolioItem3">
+
+                <!-- Projeto 3: Corporate Storytelling (Empresa 3) -->
+                <div class="portfolio-item fade-up" id="portfolioItem3" data-video="assets/videos/empresa3.mp4">
                     <div class="portfolio-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1533750516457-a7f992034fec?w=600&h=500&fit=crop&q=80"
-                            alt="Storytelling para ONG" loading="lazy">
+                        <video class="portfolio-video" src="assets/videos/empresa3.mp4#t=1" loop muted playsinline preload="metadata"></video>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <span class="portfolio-tag">Filme Institucional</span>
+                                <h3>Corporate Storytelling</h3>
+                                <p>Narrativa corporativa emocionante e estratégica</p>
+                            </div>
+                        </div>
+                        <div class="portfolio-play-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 4: Tech Startup Reel (Empresa 4) -->
+                <div class="portfolio-item fade-up" id="portfolioItem4" data-video="assets/videos/empresa4.mp4">
+                    <div class="portfolio-image-wrapper">
+                        <video class="portfolio-video" src="assets/videos/empresa4.mp4#t=1" loop muted playsinline preload="metadata"></video>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <span class="portfolio-tag">Motion Graphics</span>
+                                <h3>Tech Startup Reel</h3>
+                                <p>Rebranding e animações digitais modernas</p>
+                            </div>
+                        </div>
+                        <div class="portfolio-play-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 5: Product Launch Event (Empresa 5) -->
+                <div class="portfolio-item fade-up" id="portfolioItem5" data-video="assets/videos/empresa5.mp4">
+                    <div class="portfolio-image-wrapper">
+                        <video class="portfolio-video" src="assets/videos/empresa5.mp4#t=1" loop muted playsinline preload="metadata"></video>
+                        <div class="portfolio-overlay">
+                            <div class="portfolio-info">
+                                <span class="portfolio-tag">Audiovisual / Promo</span>
+                                <h3>Product Launch</h3>
+                                <p>Apresentação e cobertura cinematográfica de produto</p>
+                            </div>
+                        </div>
+                        <div class="portfolio-play-btn">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M8 5v14l11-7z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projeto 6: Inside the Studio (Empresa 6) -->
+                <div class="portfolio-item fade-up" id="portfolioItem6" data-video="assets/videos/empresa6.mp4">
+                    <div class="portfolio-image-wrapper">
+                        <video class="portfolio-video" src="assets/videos/empresa6.mp4#t=1" loop muted playsinline preload="metadata"></video>
                         <div class="portfolio-overlay">
                             <div class="portfolio-info">
                                 <span class="portfolio-tag">Storytelling</span>
-                                <h3>Vozes do Futuro</h3>
-                                <p>Documentário para ONG de educação</p>
+                                <h3>Inside the Studio</h3>
+                                <p>Minidocumentário institucional dos bastidores</p>
                             </div>
                         </div>
                         <div class="portfolio-play-btn">
@@ -379,28 +440,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="portfolio-item fade-up" id="portfolioItem4">
+
+                <!-- Projeto 7: Premium Fashion Reel (Empresa 7) -->
+                <div class="portfolio-item portfolio-large fade-up" id="portfolioItem7" data-video="assets/videos/empresa7.mp4">
                     <div class="portfolio-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?w=600&h=500&fit=crop&q=80"
-                            alt="Branding empresa de moda" loading="lazy">
+                        <video class="portfolio-video" src="assets/videos/empresa7.mp4#t=1" loop muted playsinline preload="metadata" poster="assets/images/3.jpg"></video>
                         <div class="portfolio-overlay">
                             <div class="portfolio-info">
-                                <span class="portfolio-tag">Identidade Visual</span>
-                                <h3>Atelier Mode</h3>
-                                <p>Identidade visual para marca de moda autoral</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="portfolio-item fade-up" id="portfolioItem5">
-                    <div class="portfolio-image-wrapper">
-                        <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=800&h=600&fit=crop&q=80"
-                            alt="Produção comercial para marca esportiva" loading="lazy">
-                        <div class="portfolio-overlay">
-                            <div class="portfolio-info">
-                                <span class="portfolio-tag">Audiovisual</span>
-                                <h3>Apex Performance</h3>
-                                <p>Comercial cinematográfico para marca esportiva</p>
+                                <span class="portfolio-tag">Branding &amp; Cinema</span>
+                                <h3>Premium Fashion Reel</h3>
+                                <p>Identidade e filme conceitual para marca de moda</p>
                             </div>
                         </div>
                         <div class="portfolio-play-btn">
@@ -795,6 +844,25 @@
             </div>
         </div>
     </footer>
+
+    <!-- Video Lightbox Modal -->
+    <div class="lightbox-modal" id="videoLightbox">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Fechar Modal">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="lightbox-content">
+            <video class="lightbox-video" id="lightboxVideo" controls autoplay playsinline></video>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp Button -->
+   <a href="https://wa.me/5514999071233?text=Ol%C3%A1%21%20Quero%20mais%20informa%C3%A7%C3%B5es." 
+   target="_blank" class="whatsapp-btn" id="whatsappBtn">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp">
+</a>
 
     <!-- Scripts -->
     <script src="js/script.js"></script>
