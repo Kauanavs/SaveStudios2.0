@@ -1,0 +1,29 @@
+{
+  "name": "save-studios",
+  "version": "2.0.0",
+  "description": "Save Studios - Audiovisual storytelling and visual identity for brands",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "test": "echo \"No tests specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kauanavs/SaveStudios2.0.git"
+  },
+  "keywords": [
+    "audiovisual",
+    "storytelling",
+    "branding",
+    "video-production"
+  ],
+  "author": "Save Studios",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kauanavs/SaveStudios2.0/issues"
+  },
+  "homepage": "https://github.com/Kauanavs/SaveStudios2.0#readme",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
