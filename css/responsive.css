@@ -91,10 +91,16 @@
 
     .hero {
         min-height: 90vh;
+        padding-top: 80px;
     }
 
     .hero-title {
         font-size: clamp(2.4rem, 8vw, 4rem);
+        margin-bottom: 24px;
+    }
+
+    .hero-subtitle {
+        margin-bottom: 40px;
     }
 
     .hero-subtitle br {
