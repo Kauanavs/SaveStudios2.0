@@ -1,27 +1,12 @@
 /* ============================================
-   SAVE STUDIOS — Landing Page Scripts
-   Interações, Animações & Funcionalidades
-
-   Índice de Módulos:
-   1. Cursor Glow
-   2. Hero Particles
-   3. Navbar (scroll, mobile toggle)
-   4. Scroll Reveal (Intersection Observer)
-   5. Counter Animation
-   6. Testimonials Slider
-   7. Smooth Scroll
-   8. Form — Envio via WhatsApp
-   9. Parallax Effects
-   10. Service Cards (tilt effect)
-   11. Portfolio (touch mobile)
-   12. Active Link Tracking
-   13. Preloader
+   SAVE STUDIOS — Scripts Premium v2
+   Interações sofisticadas e performance otimizada
    ============================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
     /* ===========================================
-       1. CURSOR GLOW — Luz que segue o mouse
+       1. CURSOR GLOW - Luz premium que segue mouse
        =========================================== */
 
     const cursorGlow = document.getElementById('cursorGlow');
@@ -34,8 +19,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function animateCursorGlow() {
-        glowX += (mouseX - glowX) * 0.08;
-        glowY += (mouseY - glowY) * 0.08;
+        glowX += (mouseX - glowX) * 0.1;
+        glowY += (mouseY - glowY) * 0.1;
 
         if (cursorGlow) {
             cursorGlow.style.left = glowX + 'px';
@@ -49,22 +34,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ===========================================
-       2. HERO PARTICLES — Partículas do hero
+       2. HERO PARTICLES - Partículas animadas
        =========================================== */
 
     const heroParticles = document.getElementById('heroParticles');
 
     if (heroParticles) {
-        const PARTICLE_COUNT = 30;
+        const PARTICLE_COUNT = 40;
 
         for (let i = 0; i < PARTICLE_COUNT; i++) {
             const particle = document.createElement('div');
             particle.classList.add('particle');
             particle.style.left = Math.random() * 100 + '%';
             particle.style.top = Math.random() * 100 + '%';
-            particle.style.animationDelay = Math.random() * 4 + 's';
-            particle.style.animationDuration = (3 + Math.random() * 3) + 's';
-            particle.style.width = (1 + Math.random() * 2) + 'px';
+            particle.style.animationDelay = Math.random() * 5 + 's';
+            particle.style.animationDuration = (4 + Math.random() * 4) + 's';
+            particle.style.width = (1.5 + Math.random() * 2.5) + 'px';
             particle.style.height = particle.style.width;
             heroParticles.appendChild(particle);
         }
@@ -72,14 +57,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ===========================================
-       3. NAVBAR — Scroll effect & Mobile toggle
+       3. NAVBAR - Scroll effect & Mobile toggle
        =========================================== */
 
     const navbar = document.getElementById('navbar');
     const navToggle = document.getElementById('navToggle');
     const navLinks = document.getElementById('navLinks');
 
-    // Scroll — adiciona classe quando rola a página
     function handleNavScroll() {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
@@ -90,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.addEventListener('scroll', handleNavScroll, { passive: true });
 
-    // Toggle — menu hamburger mobile
     if (navToggle && navLinks) {
         navToggle.addEventListener('click', () => {
             navToggle.classList.toggle('active');
@@ -98,7 +81,6 @@ document.addEventListener('DOMContentLoaded', () => {
             document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
         });
 
-        // Fecha o menu ao clicar em um link
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navToggle.classList.remove('active');
@@ -110,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ===========================================
-       4. SCROLL REVEAL — Animação de entrada
+       4. SCROLL REVEAL - Animações ao scroll
        =========================================== */
 
     const fadeUpElements = document.querySelectorAll('.fade-up');
@@ -127,17 +109,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, {
         threshold: 0.1,
-        rootMargin: '0px 0px -60px 0px'
+        rootMargin: '0px 0px -80px 0px'
     });
 
-    // Aplica stagger delay em elementos irmãos
     fadeUpElements.forEach((el) => {
         const parent = el.parentElement;
         const siblings = parent ? parent.querySelectorAll(':scope > .fade-up') : [];
 
         if (siblings.length > 1) {
             const siblingIndex = Array.from(siblings).indexOf(el);
-            el.dataset.delay = siblingIndex * 100;
+            el.dataset.delay = siblingIndex * 120;
         }
 
         revealObserver.observe(el);
@@ -145,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ===========================================
-       5. COUNTER ANIMATION — Contadores animados
+       5. COUNTER ANIMATION - Contadores animados
        =========================================== */
 
     const statNumbers = document.querySelectorAll('.stat-number[data-count]');
@@ -155,13 +136,13 @@ document.addEventListener('DOMContentLoaded', () => {
             if (entry.isIntersecting) {
                 const counter = entry.target;
                 const target = parseInt(counter.dataset.count);
-                const duration = 2000;
+                const duration = 2500;
                 const startTime = performance.now();
 
                 function updateCounter(currentTime) {
                     const elapsed = currentTime - startTime;
                     const progress = Math.min(elapsed / duration, 1);
-                    const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+                    const eased = 1 - Math.pow(1 - progress, 4);
                     counter.textContent = Math.round(eased * target);
 
                     if (progress < 1) {
@@ -179,7 +160,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ===========================================
-       6. TESTIMONIALS SLIDER — Carrossel
+       6. TESTIMONIALS SLIDER - Carrossel
        =========================================== */
 
     const track = document.getElementById('testimonialsTrack');
@@ -194,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const dots = dotsContainer.querySelectorAll('.dot');
 
         function updateSlider() {
-            const gap = 24;
+            const gap = 28;
             const cardWidth = cards[0].offsetWidth + gap;
             track.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
 
@@ -203,7 +184,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
 
-        // Controles de navegação
         nextBtn.addEventListener('click', () => {
             currentSlide = (currentSlide + 1) % totalSlides;
             updateSlider();
@@ -221,27 +201,25 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Auto-play com pausa no hover
         let autoPlayInterval = setInterval(() => {
             currentSlide = (currentSlide + 1) % totalSlides;
             updateSlider();
-        }, 5000);
+        }, 6000);
 
         track.addEventListener('mouseenter', () => clearInterval(autoPlayInterval));
         track.addEventListener('mouseleave', () => {
             autoPlayInterval = setInterval(() => {
                 currentSlide = (currentSlide + 1) % totalSlides;
                 updateSlider();
-            }, 5000);
+            }, 6000);
         });
 
-        // Recalcula ao redimensionar
         window.addEventListener('resize', updateSlider);
     }
 
 
     /* ===========================================
-       7. SMOOTH SCROLL — Links âncora suaves
+       7. SMOOTH SCROLL - Links âncora suaves
        =========================================== */
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -253,7 +231,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const targetEl = document.querySelector(targetId);
             if (targetEl) {
                 const navHeight = navbar.offsetHeight;
-                const targetPosition = targetEl.getBoundingClientRect().top + window.scrollY - navHeight - 20;
+                const targetPosition = targetEl.getBoundingClientRect().top + window.scrollY - navHeight - 30;
 
                 window.scrollTo({
                     top: targetPosition,
@@ -265,7 +243,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ===========================================
-       8. FORM — Envio via WhatsApp
+       8. FORM - Envio via WhatsApp
        =========================================== */
 
     const ctaForm = document.getElementById('ctaForm');
@@ -275,7 +253,6 @@ document.addEventListener('DOMContentLoaded', () => {
         ctaForm.addEventListener('submit', (e) => {
             e.preventDefault();
 
-            // Coleta os dados do formulário
             const name = document.getElementById('formName').value.trim();
             const email = document.getElementById('formEmail').value.trim();
             const phone = document.getElementById('formPhone').value.trim();
@@ -283,7 +260,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const service = serviceSelect.options[serviceSelect.selectedIndex]?.text || '';
             const message = document.getElementById('formMessage').value.trim();
 
-            // Monta a mensagem formatada para WhatsApp
             let whatsappMessage = `🎬 *Nova mensagem via Save Studios*\n\n`;
             whatsappMessage += `*Nome:* ${name}\n`;
             whatsappMessage += `*E-mail:* ${email}\n`;
@@ -294,7 +270,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const encodedMessage = encodeURIComponent(whatsappMessage);
             const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
 
-            // Feedback visual antes do redirecionamento
             const submitBtn = document.getElementById('formSubmit');
             submitBtn.querySelector('span').textContent = 'Abrindo WhatsApp...';
             submitBtn.style.background = 'linear-gradient(135deg, #25D366, #128C7E)';
@@ -302,19 +277,18 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
                 window.open(whatsappURL, '_blank');
 
-                // Reset do botão e formulário
                 setTimeout(() => {
                     submitBtn.querySelector('span').textContent = 'Enviar Mensagem';
                     submitBtn.style.background = '';
                     ctaForm.reset();
-                }, 2000);
-            }, 500);
+                }, 2500);
+            }, 600);
         });
     }
 
 
     /* ===========================================
-       9. PARALLAX — Efeitos sutis no scroll
+       9. PARALLAX - Efeitos ao scroll
        =========================================== */
 
     let ticking = false;
@@ -324,13 +298,11 @@ document.addEventListener('DOMContentLoaded', () => {
             requestAnimationFrame(() => {
                 const scrolled = window.scrollY;
 
-                // Parallax no gradiente do hero
                 const heroGradient = document.querySelector('.hero-gradient');
                 if (heroGradient) {
-                    heroGradient.style.transform = `translateY(${scrolled * 0.3}px)`;
+                    heroGradient.style.transform = `translateY(${scrolled * 0.35}px)`;
                 }
 
-                // Parallax nos glows do CTA
                 const ctaGlow1 = document.querySelector('.cta-glow-1');
                 const ctaGlow2 = document.querySelector('.cta-glow-2');
                 if (ctaGlow1 && ctaGlow2) {
@@ -339,8 +311,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         const ctaRect = ctaSection.getBoundingClientRect();
                         const ctaProgress = 1 - (ctaRect.top / window.innerHeight);
                         if (ctaProgress > 0 && ctaProgress < 2) {
-                            ctaGlow1.style.transform = `translate(${ctaProgress * 30}px, ${ctaProgress * -20}px)`;
-                            ctaGlow2.style.transform = `translate(${ctaProgress * -30}px, ${ctaProgress * 20}px)`;
+                            ctaGlow1.style.transform = `translate(${ctaProgress * 40}px, ${ctaProgress * -30}px)`;
+                            ctaGlow2.style.transform = `translate(${ctaProgress * -40}px, ${ctaProgress * 30}px)`;
                         }
                     }
                 }
@@ -356,7 +328,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ===========================================
-       10. SERVICE CARDS — Efeito tilt 3D no hover
+       10. SERVICE CARDS - Efeito 3D sofisticado
        =========================================== */
 
     const serviceCards = document.querySelectorAll('.service-card');
@@ -369,10 +341,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const centerX = rect.width / 2;
             const centerY = rect.height / 2;
 
-            const rotateX = (y - centerY) / centerY * -3;
-            const rotateY = (x - centerX) / centerX * 3;
+            const rotateX = (y - centerY) / centerY * -4;
+            const rotateY = (x - centerX) / centerX * 4;
 
-            card.style.transform = `translateY(-8px) perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+            card.style.transform = `translateY(-10px) perspective(1200px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
         });
 
         card.addEventListener('mouseleave', () => {
@@ -382,7 +354,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ===========================================
-       11. PORTFOLIO — Hover Play & Lightbox Modal
+       11. PORTFOLIO - Lightbox & Hover Play
        =========================================== */
 
     const portfolioItems = document.querySelectorAll('.portfolio-item');
@@ -393,14 +365,11 @@ document.addEventListener('DOMContentLoaded', () => {
     portfolioItems.forEach(item => {
         const video = item.querySelector('.portfolio-video');
 
-        // Hover Play/Pause (Desktop)
         item.addEventListener('mouseenter', () => {
             if (video) {
                 const playPromise = video.play();
                 if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        // Auto-play foi evitado pelo navegador
-                    });
+                    playPromise.catch(() => {});
                 }
             }
         });
@@ -408,11 +377,10 @@ document.addEventListener('DOMContentLoaded', () => {
         item.addEventListener('mouseleave', () => {
             if (video) {
                 video.pause();
-                video.currentTime = 1; // Reinicia o vídeo para o segundo 1 (evitando a tela preta de início)
+                video.currentTime = 1;
             }
         });
 
-        // Clique para abrir Lightbox
         item.addEventListener('click', (e) => {
             if (e.target.closest('.lightbox-modal')) return;
 
@@ -421,17 +389,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 lightboxVideo.src = videoSrc;
                 lightboxVideo.load();
                 lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden'; // Impede scroll ao fundo
+                document.body.style.overflow = 'hidden';
             }
         });
     });
 
-    // Fechar Lightbox
     function closeLightbox() {
         if (lightbox && lightboxVideo) {
             lightbox.classList.remove('active');
             lightboxVideo.pause();
-            lightboxVideo.src = ''; // Limpa a origem para economizar banda e parar o vídeo
+            lightboxVideo.src = '';
             document.body.style.overflow = '';
         }
     }
@@ -450,7 +417,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Fechar com tecla ESC
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
                 closeLightbox();
@@ -458,7 +424,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Suporte a dispositivos móveis (Touch)
     if ('ontouchstart' in window) {
         portfolioItems.forEach(item => {
             item.addEventListener('touchstart', () => {
@@ -476,13 +441,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ===========================================
-       12. ACTIVE LINK — Tracking do link ativo
+       12. ACTIVE LINK - Tracking do link ativo
        =========================================== */
 
     const sections = document.querySelectorAll('section[id]');
 
     function updateActiveLink() {
-        const scrollY = window.scrollY + 100;
+        const scrollY = window.scrollY + 150;
 
         sections.forEach(section => {
             const top = section.offsetTop;
@@ -506,16 +471,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ===========================================
-       13. PRELOADER — Fade in suave ao carregar
+       13. PAGE LOAD - Fade in suave
        =========================================== */
 
     document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.6s ease';
+    document.body.style.transition = 'opacity 0.8s ease';
 
     window.addEventListener('load', () => {
         document.body.style.opacity = '1';
 
-        // Ativa fade-ups que já estão visíveis na viewport
         setTimeout(() => {
             fadeUpElements.forEach(el => {
                 const rect = el.getBoundingClientRect();
@@ -523,7 +487,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     el.classList.add('visible');
                 }
             });
-        }, 100);
+        }, 150);
     });
 
 });
@@ -532,7 +496,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const whatsappBtn = document.getElementById('whatsappBtn');
 
 if (whatsappBtn) {
-  window.addEventListener('scroll', () => {
-    whatsappBtn.classList.toggle('show', window.scrollY > 200);
-  });
+    window.addEventListener('scroll', () => {
+        whatsappBtn.classList.toggle('show', window.scrollY > 300);
+    }, { passive: true });
 }
