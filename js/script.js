@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
        =========================================== */
 
     const ctaForm = document.getElementById('ctaForm');
-    const WHATSAPP_NUMBER = '551499173-8703';
+    const WHATSAPP_NUMBER = '5514991738703';
 
     if (ctaForm) {
         ctaForm.addEventListener('submit', (e) => {
@@ -268,7 +268,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (message) whatsappMessage += `\n*Mensagem:*\n${message}`;
 
             const encodedMessage = encodeURIComponent(whatsappMessage);
-            const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
+            const whatsappURL = `https://wa.me/${WHATSAPP_NUMBER.replace(/\D/g, '')}?text=${encodedMessage}`;
 
             const submitBtn = document.getElementById('formSubmit');
             submitBtn.querySelector('span').textContent = 'Abrindo WhatsApp...';
