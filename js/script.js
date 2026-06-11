@@ -247,7 +247,7 @@ document.addEventListener('DOMContentLoaded', () => {
        =========================================== */
 
     const ctaForm = document.getElementById('ctaForm');
-    const WHATSAPP_NUMBER = '5514991366745';
+    const WHATSAPP_NUMBER = '551499173-8703';
 
     if (ctaForm) {
         ctaForm.addEventListener('submit', (e) => {
