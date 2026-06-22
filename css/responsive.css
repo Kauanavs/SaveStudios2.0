@@ -3,6 +3,41 @@
    Premium mobile experience
    ============================================ */
 
+/* ============================================
+   UTILITÁRIO — Screen Reader Only
+   ============================================ */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ============================================
+   FOOTER — h3 herdado do HTML (era h4)
+   ============================================ */
+.footer-links-group h3 {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 28px;
+}
+
+/* ============================================
+   ABOUT — value-item usa h3 agora
+   ============================================ */
+.value-item h3 {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
 @media (max-width: 1024px) {
     .about-grid {
         grid-template-columns: 1fr;
@@ -17,11 +52,9 @@
         height: 450px;
     }
 
+    /* 2 colunas em tablet — melhor aproveitamento do espaço */
     .services-grid {
-        grid-template-columns: 1fr;
-        max-width: 540px;
-        margin-left: auto;
-        margin-right: auto;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .portfolio-grid {
@@ -103,10 +136,6 @@
         margin-bottom: 40px;
     }
 
-    .hero-subtitle br {
-        display: none;
-    }
-
     .hero-ctas {
         flex-direction: column;
         gap: 14px;
@@ -129,6 +158,14 @@
 
     .hero-scroll-indicator {
         display: none;
+    }
+
+    /* 1 coluna em mobile para serviços */
+    .services-grid {
+        grid-template-columns: 1fr;
+        max-width: 540px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .portfolio-grid {
@@ -176,6 +213,16 @@
         height: 44px;
         top: 20px;
         right: 20px;
+    }
+
+    /* About collage em mobile */
+    .about-images-collage {
+        height: 360px;
+    }
+
+    .about-image-badge {
+        left: 0;
+        bottom: 10px;
     }
 }
 
@@ -229,10 +276,15 @@
         font-size: 1.2rem;
     }
 
+    /* About collage em telas muito pequenas */
+    .about-images-collage {
+        height: 300px;
+    }
+
     .about-image-badge {
         padding: 14px 20px;
-        left: -12px;
-        bottom: 20px;
+        left: 0;
+        bottom: 8px;
     }
 
     .badge-number {
@@ -300,15 +352,15 @@
     }
 }
 
-/* Orientação Landscape */
+/* Orientação Landscape — corrigido para usar variável CSS */
 @media (max-height: 600px) and (orientation: landscape) {
+    :root {
+        --section-padding: 60px;
+    }
+
     .hero {
         min-height: auto;
         padding: 80px 0;
-    }
-
-    .section-padding {
-        padding: 60px 0;
     }
 }
 
@@ -366,4 +418,3 @@
         --marquee-gap: clamp(16px, 3vw, 32px);
     }
 }
-

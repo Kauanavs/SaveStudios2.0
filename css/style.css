@@ -1737,25 +1737,25 @@ select.form-input option {
     justify-content: center;
 }
 
-/* Destaque em Gradiente nas Estatísticas */
-.partner-stat:nth-child(1) .stat-number,
-.partner-stat:nth-child(1) .stat-prefix {
+/* Destaque em Gradiente nas Estatísticas — usa nth-of-type para ignorar os .stat-divider */
+.partner-stat:nth-of-type(1) .stat-number,
+.partner-stat:nth-of-type(1) .stat-prefix {
     background: var(--gradient-premium);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-.partner-stat:nth-child(3) .stat-number,
-.partner-stat:nth-child(3) .stat-prefix {
+.partner-stat:nth-of-type(2) .stat-number,
+.partner-stat:nth-of-type(2) .stat-prefix {
     background: var(--gradient-premium);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
 
-.partner-stat:nth-child(5) .stat-number,
-.partner-stat:nth-child(5) .stat-suffix {
+.partner-stat:nth-of-type(3) .stat-number,
+.partner-stat:nth-of-type(3) .stat-suffix {
     background: var(--gradient-premium);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
