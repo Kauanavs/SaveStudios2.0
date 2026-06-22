@@ -316,43 +316,54 @@
    PARTNERS MARQUEE — Responsividade
    ============================================ */
 
-@media (max-width: 1024px) {
-    :root {
-        --marquee-duration: 26s;
-        --marquee-logo-height: clamp(44px, 7vw, 64px);
-        --marquee-gap: clamp(24px, 4vw, 48px);
-        --marquee-container-height: clamp(110px, 14vw, 140px);
-    }
-}
-
 @media (max-width: 768px) {
-    :root {
-        --marquee-duration: 20s;
-        --marquee-logo-height: clamp(36px, 10vw, 56px);
-        --marquee-gap: clamp(20px, 5vw, 36px);
-        --marquee-container-height: clamp(100px, 18vw, 120px);
-    }
-
     .partners-header .section-title {
         font-size: clamp(1.6rem, 5vw, 2.2rem);
+    }
+
+    /* Marquee: itens menores em mobile */
+    .marquee-item {
+        min-width: 170px;
+        padding: 16px 20px;
+    }
+
+    .marquee-item img {
+        width: 140px;
+        height: 56px;
+    }
+
+    .partners-stats {
+        flex-direction: column;
+        gap: 32px;
+        padding-top: 48px;
+    }
+
+    .partners-stats .stat-divider {
+        display: none;
     }
 }
 
 @media (max-width: 480px) {
+    /* Marquee ainda mais compacto em telas pequenas */
+    .marquee-item {
+        min-width: 140px;
+        padding: 14px 16px;
+        gap: 8px;
+    }
+
+    .marquee-item img {
+        width: 120px;
+        height: 48px;
+    }
+
+    .marquee-label {
+        font-size: 0.7rem;
+    }
+
+    /* Velocidade um pouco mais lenta em mobile para melhor leitura */
     :root {
-        --marquee-duration: 16s;
-        --marquee-logo-height: clamp(30px, 12vw, 48px);
-        --marquee-gap: clamp(16px, 5vw, 28px);
-        --marquee-container-height: 100px;
-    }
-
-    .partners-divider-text {
-        font-size: 0.65rem;
-        padding: 5px 14px;
-        letter-spacing: 0.14em;
-    }
-
-    .partner-name {
-        display: none; /* esconde labels em telas muito pequenas */
+        --marquee-duration: 24s;
+        --marquee-gap: clamp(16px, 3vw, 32px);
     }
 }
+

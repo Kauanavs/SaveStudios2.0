@@ -502,71 +502,12 @@ if (whatsappBtn) {
 }
 
 
+
 /* ===========================================
-   14. PARTNERS MARQUEE — Loop seamless inteligente
+   14. PARTNERS SECTION — Redesenhado para Grade Estática
+   A lógica de marquee foi descontinuada em favor da grade responsiva.
+   Os contadores são automaticamente inicializados pelo contador geral.
    =========================================== */
 
-function initPartners() {
-    const track = document.getElementById('partnersTrack');
-    if (!track) return;
-
-    // Respeitar preferência de movimento reduzido (acessibilidade)
-    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (prefersReduced) {
-        track.style.animation = 'none';
-        track.style.flexWrap = 'wrap';
-        track.style.justifyContent = 'center';
-        return;
-    }
-
-    // Coletar logos originais (antes de qualquer clonagem)
-    const originalLogos = [...track.querySelectorAll('.partner-logo:not(.cloned)')];
-    if (originalLogos.length === 0) return;
-
-    // Limpar clones anteriores (seguro em hot-reload)
-    track.querySelectorAll('.cloned').forEach(el => el.remove());
-
-    // ─────────────────────────────────────────────────────────────────
-    // Estratégia de loop seamless matematicamente correta:
-    //
-    //   totalGrupos = 1 (original) + NUM_CLONES
-    //   translateX% = -(100 / totalGrupos)   →  move exatamente 1 grupo
-    //
-    //   Ex.: 4 grupos → translateX(-25%) = desloca 1 grupo → seamless ✓
-    //        2 grupos → translateX(-50%) = desloca 1 grupo → seamless ✓
-    // ─────────────────────────────────────────────────────────────────
-    const NUM_CLONES = 3; // 1 original + 3 = 4 grupos
-    const TOTAL_GROUPS = 1 + NUM_CLONES;
-    const translatePct = -(100 / TOTAL_GROUPS); // -25%
-
-    for (let i = 0; i < NUM_CLONES; i++) {
-        originalLogos.forEach(logo => {
-            const clone = logo.cloneNode(true);
-            clone.setAttribute('aria-hidden', 'true');
-            clone.classList.add('cloned');
-            track.appendChild(clone);
-        });
-    }
-
-    // Aplicar a distância correta ao keyframe via CSS custom property
-    document.documentElement.style.setProperty(
-        '--marquee-translate',
-        `${translatePct}%`
-    );
-
-    // Calcular duração pela largura real de 1 grupo a 80 px/s
-    // (velocidade constante e agradável em qualquer viewport)
-    requestAnimationFrame(() => {
-        const PIXELS_PER_SECOND = 80;
-        const fullTrackWidth = track.scrollWidth;
-        const oneGroupWidth = fullTrackWidth / TOTAL_GROUPS;
-        const duration = Math.max(16, (oneGroupWidth / PIXELS_PER_SECOND).toFixed(1));
-
-        document.documentElement.style.setProperty('--marquee-duration', `${duration}s`);
-    });
-}
-
-// Inicializar após DOM estar carregado
-document.addEventListener('DOMContentLoaded', initPartners);
 
 
