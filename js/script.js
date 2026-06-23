@@ -7,40 +7,46 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ===========================================
        1. CURSOR GLOW - Luz premium que segue mouse
+       Ativo apenas em dispositivos com mouse (pointer: fine).
+       No mobile o elemento e ocultado para nao gerar layer de compositing desnecessaria.
        =========================================== */
 
     const cursorGlow = document.getElementById('cursorGlow');
-    let mouseX = 0, mouseY = 0;
-    let glowX = 0, glowY = 0;
+    const hasPointer = window.matchMedia('(pointer: fine)').matches;
 
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
+    if (cursorGlow && hasPointer) {
+        let mouseX = 0, mouseY = 0;
+        let glowX = 0, glowY = 0;
 
-    function animateCursorGlow() {
-        glowX += (mouseX - glowX) * 0.1;
-        glowY += (mouseY - glowY) * 0.1;
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+        });
 
-        if (cursorGlow) {
+        function animateCursorGlow() {
+            glowX += (mouseX - glowX) * 0.1;
+            glowY += (mouseY - glowY) * 0.1;
             cursorGlow.style.left = glowX + 'px';
             cursorGlow.style.top = glowY + 'px';
+            requestAnimationFrame(animateCursorGlow);
         }
 
-        requestAnimationFrame(animateCursorGlow);
+        animateCursorGlow();
+    } else if (cursorGlow) {
+        cursorGlow.style.display = 'none';
     }
-
-    animateCursorGlow();
 
 
     /* ===========================================
-       2. HERO PARTICLES - Partículas animadas
+       2. HERO PARTICLES - Particulas animadas
+       Reduz a quantidade no mobile para preservar performance.
        =========================================== */
 
     const heroParticles = document.getElementById('heroParticles');
 
     if (heroParticles) {
-        const PARTICLE_COUNT = 40;
+        const isMobile = window.matchMedia('(max-width: 768px)').matches;
+        const PARTICLE_COUNT = isMobile ? 15 : 40;
 
         for (let i = 0; i < PARTICLE_COUNT; i++) {
             const particle = document.createElement('div');
@@ -58,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ===========================================
        3. NAVBAR - Scroll effect & Mobile toggle
+       aria-expanded atualizado ao abrir/fechar menu.
        =========================================== */
 
     const navbar = document.getElementById('navbar');
@@ -75,16 +82,21 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', handleNavScroll, { passive: true });
 
     if (navToggle && navLinks) {
+        // Garante que o atributo existe desde o inicio
+        navToggle.setAttribute('aria-expanded', 'false');
+
         navToggle.addEventListener('click', () => {
-            navToggle.classList.toggle('active');
-            navLinks.classList.toggle('active');
-            document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+            const isOpen = navLinks.classList.toggle('active');
+            navToggle.classList.toggle('active', isOpen);
+            navToggle.setAttribute('aria-expanded', String(isOpen));
+            document.body.style.overflow = isOpen ? 'hidden' : '';
         });
 
         navLinks.querySelectorAll('a').forEach(link => {
             link.addEventListener('click', () => {
                 navToggle.classList.remove('active');
                 navLinks.classList.remove('active');
+                navToggle.setAttribute('aria-expanded', 'false');
                 document.body.style.overflow = '';
             });
         });
@@ -92,7 +104,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* ===========================================
-       4. SCROLL REVEAL - Animações ao scroll
+       4. SCROLL REVEAL - Animacoes ao scroll
        =========================================== */
 
     const fadeUpElements = document.querySelectorAll('.fade-up');
@@ -161,6 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     /* ===========================================
        6. TESTIMONIALS SLIDER - Carrossel
+       Debounce no resize para evitar recalculos excessivos.
        =========================================== */
 
     const track = document.getElementById('testimonialsTrack');
@@ -214,12 +227,17 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 6000);
         });
 
-        window.addEventListener('resize', updateSlider);
+        // Debounce no resize: espera 150ms apos o usuario parar de redimensionar
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(updateSlider, 150);
+        });
     }
 
 
     /* ===========================================
-       7. SMOOTH SCROLL - Links âncora suaves
+       7. SMOOTH SCROLL - Links ancora suaves
        =========================================== */
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -353,161 +371,75 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
 
+
     /* ===========================================
-       11. PORTFOLIO - Lightbox & Hover Play
+       11. WHATSAPP BUTTON - Botao flutuante
+       Mantido dentro do DOMContentLoaded (consistente com o restante do codigo).
        =========================================== */
 
+    const whatsappBtn = document.getElementById('whatsappBtn');
+
+    if (whatsappBtn) {
+        let lastScrollY = window.scrollY;
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+
+            if (currentScrollY > 300) {
+                whatsappBtn.classList.add('visible');
+            } else {
+                whatsappBtn.classList.remove('visible');
+            }
+
+            lastScrollY = currentScrollY;
+        }, { passive: true });
+    }
+
+
+    /* ===========================================
+       12. PARTNERS LOGO MARQUEE
+       Duplica os logos para loop infinito continuo.
+       =========================================== */
+
+    const marqueeTrack = document.getElementById('marqueeTrack');
+
+    if (marqueeTrack) {
+        const logos = marqueeTrack.innerHTML;
+        marqueeTrack.innerHTML = logos + logos;
+    }
+
+
+    /* ===========================================
+       13. PORTFOLIO FILTER - Filtros de categoria
+       =========================================== */
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
     const portfolioItems = document.querySelectorAll('.portfolio-item');
-    const lightbox = document.getElementById('videoLightbox');
-    const lightboxVideo = document.getElementById('lightboxVideo');
-    const lightboxClose = document.getElementById('lightboxClose');
 
-    portfolioItems.forEach(item => {
-        const video = item.querySelector('.portfolio-video');
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
 
-        item.addEventListener('mouseenter', () => {
-            if (video) {
-                const playPromise = video.play();
-                if (playPromise !== undefined) {
-                    playPromise.catch(() => {});
-                }
-            }
-        });
+            const filter = btn.dataset.filter;
 
-        item.addEventListener('mouseleave', () => {
-            if (video) {
-                video.pause();
-                video.currentTime = 1;
-            }
-        });
+            portfolioItems.forEach(item => {
+                const match = filter === 'all' || item.dataset.category === filter;
+                item.style.opacity = '0';
+                item.style.transform = 'scale(0.9)';
 
-        item.addEventListener('click', (e) => {
-            if (e.target.closest('.lightbox-modal')) return;
+                setTimeout(() => {
+                    item.style.display = match ? '' : 'none';
 
-            const videoSrc = item.getAttribute('data-video');
-            if (videoSrc && lightbox && lightboxVideo) {
-                lightboxVideo.src = videoSrc;
-                lightboxVideo.load();
-                lightbox.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            }
+                    if (match) {
+                        requestAnimationFrame(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = '';
+                        });
+                    }
+                }, 200);
+            });
         });
     });
 
-    function closeLightbox() {
-        if (lightbox && lightboxVideo) {
-            lightbox.classList.remove('active');
-            lightboxVideo.pause();
-            lightboxVideo.src = '';
-            document.body.style.overflow = '';
-        }
-    }
-
-    if (lightboxClose) {
-        lightboxClose.addEventListener('click', (e) => {
-            e.stopPropagation();
-            closeLightbox();
-        });
-    }
-
-    if (lightbox) {
-        lightbox.addEventListener('click', (e) => {
-            if (e.target === lightbox) {
-                closeLightbox();
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
-        });
-    }
-
-    if ('ontouchstart' in window) {
-        portfolioItems.forEach(item => {
-            item.addEventListener('touchstart', () => {
-                portfolioItems.forEach(i => i.classList.remove('touch-active'));
-                item.classList.add('touch-active');
-            });
-        });
-
-        document.addEventListener('touchstart', (e) => {
-            if (!e.target.closest('.portfolio-item')) {
-                document.querySelectorAll('.portfolio-item').forEach(i => i.classList.remove('touch-active'));
-            }
-        });
-    }
-
-
-    /* ===========================================
-       12. ACTIVE LINK - Tracking do link ativo
-       =========================================== */
-
-    const sections = document.querySelectorAll('section[id]');
-
-    function updateActiveLink() {
-        const scrollY = window.scrollY + 150;
-
-        sections.forEach(section => {
-            const top = section.offsetTop;
-            const height = section.offsetHeight;
-            const id = section.getAttribute('id');
-
-            const link = document.querySelector(`.nav-link[href="#${id}"]`);
-            if (link) {
-                if (scrollY >= top && scrollY < top + height) {
-                    link.classList.add('active');
-                    link.style.color = 'var(--color-text-primary)';
-                } else {
-                    link.classList.remove('active');
-                    link.style.color = '';
-                }
-            }
-        });
-    }
-
-    window.addEventListener('scroll', updateActiveLink, { passive: true });
-
-
-    /* ===========================================
-       13. PAGE LOAD - Fade in suave
-       =========================================== */
-
-    document.body.style.opacity = '0';
-    document.body.style.transition = 'opacity 0.8s ease';
-
-    window.addEventListener('load', () => {
-        document.body.style.opacity = '1';
-
-        setTimeout(() => {
-            fadeUpElements.forEach(el => {
-                const rect = el.getBoundingClientRect();
-                if (rect.top < window.innerHeight) {
-                    el.classList.add('visible');
-                }
-            });
-        }, 150);
-    });
-
-});
-
-// WHATSAPP BUTTON
-const whatsappBtn = document.getElementById('whatsappBtn');
-
-if (whatsappBtn) {
-    window.addEventListener('scroll', () => {
-        whatsappBtn.classList.toggle('show', window.scrollY > 300);
-    }, { passive: true });
-}
-
-
-
-/* ===========================================
-   14. PARTNERS SECTION — Redesenhado para Grade Estática
-   A lógica de marquee foi descontinuada em favor da grade responsiva.
-   Os contadores são automaticamente inicializados pelo contador geral.
-   =========================================== */
-
-
-
+}); // fim do DOMContentLoaded
