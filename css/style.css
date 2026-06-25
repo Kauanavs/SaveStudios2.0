@@ -405,7 +405,8 @@ textarea {
     object-fit: contain;
 }
 
-.whatsapp-btn.show {
+.whatsapp-btn.show,
+.whatsapp-btn.visible {
     transform: translateY(0) scale(1);
     opacity: 1;
 }
