@@ -36,6 +36,9 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
 
+    <!-- Scripts -->
+    <script defer src="js/script.js"></script>
+
     <!-- Vercel Web Analytics -->
     <script>
         window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
@@ -54,7 +57,10 @@
         <nav class="navbar" id="navbar" aria-label="Navegação principal">
             <div class="nav-container">
                 <a href="#" class="nav-logo" id="navLogo" aria-label="Save Studios — Página inicial">
-                    <img src="assets/images/logo-save-studios.png" alt="Save Studios" class="logo-img">
+                    <picture>
+                        <source srcset="assets/images/logo-save-studios.webp" type="image/webp">
+                        <img src="assets/images/logo-save-studios.png" alt="Save Studios" class="logo-img" width="1615" height="843">
+                    </picture>
                 </a>
                 <ul class="nav-links" id="navLinks" role="list">
                     <li><a href="#about" class="nav-link">Sobre</a></li>
@@ -197,10 +203,16 @@
                         <div class="about-images-collage">
                             <div class="about-image-glow" aria-hidden="true"></div>
                             <div class="collage-img main-img">
-                                <img src="assets/images/2.jpg" alt="Equipe Save Studios em produção audiovisual" loading="lazy">
+                                <picture>
+                                    <source srcset="assets/images/2.webp" type="image/webp">
+                                    <img src="assets/images/2.jpg" alt="Equipe Save Studios em produção audiovisual" width="1080" height="1350" loading="lazy">
+                                </picture>
                             </div>
                             <div class="collage-img overlay-img">
-                                <img src="assets/images/3.jpg" alt="Direção e gravação de vídeo na Save Studios" loading="lazy">
+                                <picture>
+                                    <source srcset="assets/images/3.webp" type="image/webp">
+                                    <img src="assets/images/3.jpg" alt="Direção e gravação de vídeo na Save Studios" width="1080" height="1350" loading="lazy">
+                                </picture>
                             </div>
                             <div class="about-image-badge glass-card" aria-label="Mais de 1 ano criando experiências">
                                 <span class="badge-number" aria-hidden="true">1+</span>
@@ -521,52 +533,52 @@
                 <div class="marquee-track" aria-hidden="true">
                     <!-- Conjunto original -->
                     <div class="marquee-item">
-                        <img src="assets/partners-logos/logo-1.svg" alt="Sorvetes Cremofruit" loading="lazy" />
+                        <img src="assets/partners-logos/logo-1.svg" alt="Sorvetes Cremofruit" width="180" height="72" loading="lazy" />
                         <span class="marquee-label">Cremofruit</span>
                     </div>
                     <div class="marquee-item">
-                        <img src="assets/partners-logos/logo-2.svg" alt="Biolab Jaú" loading="lazy" />
+                        <img src="assets/partners-logos/logo-2.svg" alt="Biolab Jaú" width="180" height="72" loading="lazy" />
                         <span class="marquee-label">Biolab Jaú</span>
                     </div>
                     <div class="marquee-item">
-                        <img src="assets/partners-logos/logo-3.svg" alt="Auto Shine Detail" loading="lazy" />
+                        <img src="assets/partners-logos/logo-3.svg" alt="Auto Shine Detail" width="180" height="72" loading="lazy" />
                         <span class="marquee-label">Auto Shine</span>
                     </div>
                     <div class="marquee-item">
-                        <img src="assets/partners-logos/logo-4.svg" alt="Baister" loading="lazy" />
+                        <img src="assets/partners-logos/logo-4.svg" alt="Baister" width="180" height="72" loading="lazy" />
                         <span class="marquee-label">Baister</span>
                     </div>
                     <div class="marquee-item">
-                        <img src="assets/partners-logos/logo-5.svg" alt="Vivere" loading="lazy" />
+                        <img src="assets/partners-logos/logo-5.svg" alt="Vivere" width="180" height="72" loading="lazy" />
                         <span class="marquee-label">Vivere</span>
                     </div>
                     <div class="marquee-item">
-                        <img src="assets/partners-logos/logo-6.svg" alt="Vertex Digital" loading="lazy" />
+                        <img src="assets/partners-logos/logo-6.svg" alt="Vertex Digital" width="180" height="72" loading="lazy" />
                         <span class="marquee-label">Vertex Digital</span>
                     </div>
                     <!-- Duplicata para loop infinito -->
                     <div class="marquee-item">
-                        <img src="assets/partners-logos/logo-1.svg" alt="" loading="lazy" />
+                        <img src="assets/partners-logos/logo-1.svg" alt="" width="180" height="72" loading="lazy" />
                         <span class="marquee-label">Cremofruit</span>
                     </div>
                     <div class="marquee-item">
-                        <img src="assets/partners-logos/logo-2.svg" alt="" loading="lazy" />
+                        <img src="assets/partners-logos/logo-2.svg" alt="" width="180" height="72" loading="lazy" />
                         <span class="marquee-label">Biolab Jaú</span>
                     </div>
                     <div class="marquee-item">
-                        <img src="assets/partners-logos/logo-3.svg" alt="" loading="lazy" />
+                        <img src="assets/partners-logos/logo-3.svg" alt="" width="180" height="72" loading="lazy" />
                         <span class="marquee-label">Auto Shine</span>
                     </div>
                     <div class="marquee-item">
-                        <img src="assets/partners-logos/logo-4.svg" alt="" loading="lazy" />
+                        <img src="assets/partners-logos/logo-4.svg" alt="" width="180" height="72" loading="lazy" />
                         <span class="marquee-label">Baister</span>
                     </div>
                     <div class="marquee-item">
-                        <img src="assets/partners-logos/logo-5.svg" alt="" loading="lazy" />
+                        <img src="assets/partners-logos/logo-5.svg" alt="" width="180" height="72" loading="lazy" />
                         <span class="marquee-label">Vivere</span>
                     </div>
                     <div class="marquee-item">
-                        <img src="assets/partners-logos/logo-6.svg" alt="" loading="lazy" />
+                        <img src="assets/partners-logos/logo-6.svg" alt="" width="180" height="72" loading="lazy" />
                         <span class="marquee-label">Vertex Digital</span>
                     </div>
                 </div>
@@ -718,9 +730,8 @@
                             </blockquote>
                             <div class="testimonial-author">
                                 <div class="author-avatar">
-                                    <img src="assets/images/testimonial-1.jpg"
-                                        alt="Rafael Mendes, CEO da Vertex Digital" loading="lazy" decoding="async"
-                                        onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&q=80'">
+                                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=56&h=56&fit=crop&q=80&fm=webp"
+                                        alt="Rafael Mendes, CEO da Vertex Digital" width="56" height="56" loading="lazy" decoding="async">
                                 </div>
                                 <div class="author-info">
                                     <strong>Rafael Mendes</strong>
@@ -760,9 +771,8 @@
                             </blockquote>
                             <div class="testimonial-author">
                                 <div class="author-avatar">
-                                    <img src="assets/images/testimonial-2.jpg"
-                                        alt="Camila Torres, Fundadora do Studio Aura" loading="lazy"
-                                        onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&q=80'">
+                                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=56&h=56&fit=crop&q=80&fm=webp"
+                                        alt="Camila Torres, Fundadora do Studio Aura" width="56" height="56" loading="lazy">
                                 </div>
                                 <div class="author-info">
                                     <strong>Camila Torres</strong>
@@ -802,9 +812,8 @@
                             </blockquote>
                             <div class="testimonial-author">
                                 <div class="author-avatar">
-                                    <img src="assets/images/testimonial-3.jpg"
-                                        alt="Lucas Andrade, Diretor de Marketing da Rise Co." loading="lazy"
-                                        onerror="this.src='https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&q=80'">
+                                    <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=56&h=56&fit=crop&q=80&fm=webp"
+                                        alt="Lucas Andrade, Diretor de Marketing da Rise Co." width="56" height="56" loading="lazy">
                                 </div>
                                 <div class="author-info">
                                     <strong>Lucas Andrade</strong>
@@ -919,7 +928,10 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <a href="#" class="nav-logo" aria-label="Save Studios — Voltar ao topo">
-                        <img src="assets/images/logo-save-studios.png" alt="Save Studios" class="logo-img">
+                        <picture>
+                            <source srcset="assets/images/logo-save-studios.webp" type="image/webp">
+                            <img src="assets/images/logo-save-studios.png" alt="Save Studios" class="logo-img" width="1615" height="843">
+                        </picture>
                     </a>
                     <p class="footer-desc">
                         Transformamos ideias em experiências visuais marcantes.
@@ -1024,8 +1036,6 @@
         </svg>
     </a>
 
-    <!-- Scripts -->
-    <script src="js/script.js"></script>
 </body>
 
 </html>
